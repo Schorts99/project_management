@@ -12,6 +12,11 @@ class TasksController < ApplicationController
     redirect_to @project
   end
 
+  def complete
+    @task.update_attribute(:completed_at, Time.now)
+    redirect_to @project, notice: "Tarea completada"
+  end
+
   private
     def task_params
       params.require(:task).permit(:content)
